@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body.assignmentPage {
+    @apply m-0 p-0 box-border font-inter bg-white dark:bg-neutral-950 dark:text-neutral-50 transition-all duration-300 ease-out;
+}

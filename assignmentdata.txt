@@ -1,0 +1,102 @@
+<main className="w-full h-fit relative">
+                <section className="w-full h-full relative max-w-[1500px] ml-auto mr-auto bg-blue-500/0 p-5">
+
+                    {/* Start Assignment */}
+                    <div className={`flex flex-col items-center mt-10 ${currentPage===0 ? "flex" : "hidden"}`}>
+                        <h1 className="text-[30px] tracking-tight font-semibold text-neutral-900 dark:text-neutral-100">{ AssignmentDetails.assignmentDetails.name }</h1>
+                        <p className="mt-3 text-neutral-500 font-medium dark:text-neutral-400">Due: { getLegibleDate( AssignmentDetails.assignmentDetails.expiryDate )}</p>
+
+                        <div className="w-full max-w-[350px] h-[150px] p-3 bg-white  mt-7 rounded-[5px] border-[1px] border-[#E9EBED] flex justify-between dark:bg-neutral-900 dark:border-neutral-700">
+                            <div className="w-[40%] h-full flex flex-col items-center justify-center gap-2">
+                                <h1 className="text-[30px] font-semibold text-neutral-700 dark:text-neutral-200">{ AssignmentDetails.questions.length }</h1>
+                                <p className="text-[17px] font-medium text-neutral-500">Questions</p>
+                            </div>
+                            <div className="w-[1px] h-full bg-[#E9EBED] dark:bg-neutral-700"></div>
+                            <div className="w-[40%] h-full flex flex-col items-center justify-center gap-2">
+                                <h1 className="text-[30px] font-semibold text-neutral-700 dark:text-neutral-200">{ (AssignmentDetails.questions.length)*1.5 + 2 }</h1>
+                                <p className="text-[17px] font-medium text-neutral-500">Minutes</p>
+                            </div>
+                        </div>
+                        {hasDateSurpassed(AssignmentDetails.assignmentDetails.expiryDate) ? <p className="mt-7 text-[18px] text-neutral-800 dark:text-neutral-300">Assignment is not accepting submissions</p> : <button className={`w-full h-[50px] bg-blue-600 text-white mt-7 rounded-[7px] max-w-[350px]  text-[16px] flex items-center justify-center font-medium transition-all ease-out duration-100 hover:bg-neutral-950 dark:hover:bg-neutral-50 dark:hover:text-neutral-950 `}
+
+                        onClick={() => {
+                            setCurrentPage((prevPage) => prevPage+1)
+                        }}
+    >Start</button>}
+                        
+                    </div>
+
+                    {/* Questions */}
+                    <div className={`flex flex-col items-center mt-10 ${currentPage===0 ? "hidden" : "flex"}`}>
+                        <h1 className="text-[32px] tracking-tight font-semibold text-neutral-800 dark:text-neutral-100">
+                            { currentPage>= 1  ? AssignmentDetails.questions[currentPage - 1 ].prompt : AssignmentDetails.questions[currentPage].prompt }
+                        </h1>
+
+                        <div className="mt-10 flex flex-col gap-4 pl-5 pr-5">
+                            {
+                                currentPage>= 1 
+                                ? AssignmentDetails.questions[currentPage-1].choices.map((choice: any, index: any) => (
+                                    <button 
+                                    key={choice.id}
+                                    className={`bg-gradient-to-r  border-[2px]  p-3 flex gap-4 rounded-[7px] w-full max-w-[345px] justify-start items-start h-fit  relative transition-all duration-100 ease-out min-w-[345px]
+
+                                    dark:to-neutral-900
+                                    dark:from-neutral-900
+
+                                    hover:from-[#F8FBFF]
+                                    hover:to-[#ECF3FE]
+
+                                    dark:hover:border-blue-500/70
+
+                                     hover:border-blue-500/70
+
+                                     group
+
+                                    
+                                    
+                                    ${selectedOption===choice.id ? "from-[#F8FBFF]" : "from-white"}
+                                    ${selectedOption===choice.id ? "to-[#ECF3FE]" : "to-white"}
+                                    ${selectedOption===choice.id ? "to-[#ECF3FE]" : "to-white"}
+                                    ${selectedOption===choice.id ? "border-blue-500/70" : "border-[#E9EBED]"}
+                                    ${selectedOption===choice.id ? "dark:border-blue-500/70" : "dark:border-neutral-800"}
+                                    
+                                    
+                                    `}
+                                    onClick={() => handleOptionSelect(choice.id)}
+                                    >
+                                        <h1 className={`w-[30px] h-[30px] p-3 flex items-center justify-center rounded-full bg-white/20 border-[2px] dark:bg-neutral-700/20 
+                                         group-hover:border-blue-500/70
+                                         dark:group-hover:border-blue-500/70
+                                        ${selectedOption===choice.id ? "border-blue-500/70" : "border-[#E9EBED]"}
+                                        ${selectedOption===choice.id ? "dark:border-blue-500/70" : "dark:border-neutral-800"}
+
+                                        `}>{index+1}</h1>
+                                        <p className="mt-1 text-left break-words max-w-[270px]">{choice.value}</p>
+                                    </button>
+                                ))
+                                : ""
+                            }
+                        </div>
+
+                        <div className="w-[345px] flex items-center justify-between gap-2">
+                        <button className={`w-full h-[50px] hover:bg-blue-600 text-white mt-7 rounded-[7px] max-w-[25%]  text-[16px] flex items-center justify-center font-medium transition-all ease-out duration-100 bg-neutral-950 dark:hover:bg-neutral-50 dark:hover:text-neutral-950 
+                        
+                        ${currentPage===1 ? "hidden": "block"}
+                        `}
+
+                        onClick={handleBackBtn}
+                        >Back</button>
+
+
+                        <button className={`w-full h-[50px] bg-blue-600 text-white mt-7 rounded-[7px]  text-[16px] flex items-center justify-center font-medium transition-all ease-out duration-100 hover:bg-neutral-950 dark:hover:bg-neutral-50 dark:hover:text-neutral-950 `}
+
+                        onClick={handleContinueBtn}
+                        >{ currentPage < AssignmentDetails.questions.length ? "Continue": "Submit" }</button>
+                        </div>
+                    </div>
+
+
+
+
+                </section>
+            </main>
