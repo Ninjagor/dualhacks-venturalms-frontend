@@ -88,7 +88,10 @@ const Classes = () => {
   }
 
   const getClasses = async() => {
-    sendGetRequest("/classesasstudent");
+    setTimeout(() => {
+      sendGetRequest("/classesasstudent");
+    }, 50)
+    
     sendGetRequest("/classesasadmin");
   }
 
@@ -139,6 +142,10 @@ const Classes = () => {
     } else {
       notify("Class Name is mandatory", true)
     }
+  }
+
+  const prevent = (e: any) => {
+    e.preventDefault();
   }
 
   const joinNewClass = async() => {
@@ -313,20 +320,20 @@ const Classes = () => {
     <span className="sr-only">Loading...</span>  
       </p>
       
-      <div className="flex gap-4 flex-wrap mt-5 max-[688px]:justify-center">
+      <div className="relative flex gap-4 flex-wrap mt-5 max-[688px]:justify-center items-start ">
       {classData.data.map((dataItem) => {
         const classInfo = dataItem.class;
         return (
-          <div key={classInfo.id} className="w-[300px] p-6 border-[1px] rounded-[5px] border-[#e0e1e3] flex flex-col items-center gap-3 max-w-[300px] dark:bg-neutral-900 dark:border-neutral-800  cursor-pointer dark:hover:bg-neutral-800 dark:hover:border-neutral-700 transition-all duration-350 ease-out hover:border-blue-500/70 relative" onClick={handleDivClick(`/class/${classInfo.id}`)}>
+          <div key={classInfo.id} className="w-[350px] p-6 border-[1px] rounded-[5px] border-[#e0e1e3] flex flex-col items-center gap-3 max-w-[400px] dark:bg-neutral-900 dark:border-neutral-800  cursor-pointer dark:hover:bg-neutral-800 dark:hover:border-neutral-700 transition-all duration-350 ease-out hover:border-blue-500/70 relative" onClick={handleDivClick(`/class/${classInfo.id}`)}>
             <h2 className="text-[26px] tracking-tight font-semibold text-neutral-800 dark:text-neutral-200">{classInfo.name}</h2>
             <p className="text-center text-[16px]  dark:text-neutral-400">{classInfo.description}</p>
             {/* {classInfo.classAdministratorId===JSON.parse(localStorage.getItem("user_data") as any).id ? <p className="text-center text-[16px]  dark:text-neutral-400 font-semibold">You teach this class.</p> : ""} */}
             {classInfo.classAdministratorId===JSON.parse(localStorage.getItem("user_data") as any).id ? 
             <div className="self-start mt-5 ">
               <p className="ml-1 text-neutral-700 dark:text-neutral-300">Share this with students</p>
-              <p className="p-3 bg-neutral-50 rounded-[5px] border-[1px] border-[#a8aaac] mt-2 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400  copyTag text-neutral-600" onClick={
+              <p className="p-3 bg-neutral-50 rounded-[5px] border-[1px] border-[#a8aaac] mt-2 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400  copyTag text-neutral-600 relative" onClick={
                 handleCopyClick(classInfo.id as string)
-              }>{classInfo.id} <FontAwesomeIcon className="mb-[1px] ml-1" icon={faCopy}/></p>
+              }>{classInfo.id} <FontAwesomeIcon className="mb-[1px] ml-1 copyTag" icon={faCopy} onClick={prevent}/></p>
             </div>
             : ""}
           </div>

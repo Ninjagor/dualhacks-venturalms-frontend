@@ -31,10 +31,9 @@ const Navbar: React.FC<NavbarProps>  = ({ themeChange, theme }) => {
         </div>
         <div className="flex h-full relative items-center gap-7 max-[670px]:hidden">
             <ul className="flex items-center gap-7">
-                <li><Link to='/product' className="font-semibold text-neutral-600 text-[16px] hover:text-neutral-950 transition-all duration-200 ease-in-out dark:text-neutral-200 dark:hover:text-white">Product</Link></li>
-                <li><Link to='/integrations' className="font-semibold text-neutral-600 text-[16px]  hover:text-neutral-950 transition-all duration-200 ease-in-out dark:text-neutral-200 dark:hover:text-white">Integrations</Link></li>
+                <li><Link to='/meethedevs' className="font-semibold text-neutral-600 text-[16px] hover:text-neutral-950 transition-all duration-200 ease-in-out dark:text-neutral-200 dark:hover:text-white">Developers</Link></li>
                 <li><Link to='/pricing' className="font-semibold text-neutral-600 text-[16px]  hover:text-neutral-950 transition-all duration-200 ease-in-out dark:text-neutral-200 dark:hover:text-white">Pricing</Link></li>
-                <li><Link to='/docs' className="font-semibold text-neutral-600 text-[16px] hover:text-neutral-950 transition-all duration-200 ease-in-out dark:text-neutral-200 dark:hover:text-white">Docs</Link></li>
+                <li><Link to='/about' className="font-semibold text-neutral-600 text-[16px] hover:text-neutral-950 transition-all duration-200 ease-in-out dark:text-neutral-200 dark:hover:text-white">About</Link></li>
             </ul>
             <div className='h-[20px] w-[1px] bg-neutral-400 dark:bg-neutral-600 '></div>
             {theme === "light" ?<img onClick={handleButtonClick} src={SunImg} className="cursor-pointer" /> :<img onClick={handleButtonClick} src={MoonImg} className="cursor-pointer" /> }

@@ -81,12 +81,18 @@ const Login = () => {
                 notify("Success!", false)
                 const data = await response.json();
                 console.log('Login successful:', data);
+                let accountType;
+                if (data.isUser) {
+                    accountType = "user"
+                } else {
+                    accountType = "parent"
+                }
                 const userData = {
                     jwt: data.token,
                     id: data.user.id,
                     name: data.user.name,
                     email: data.user.email,
-                    accountType: "user"
+                    accountType: accountType
                 }
                 localStorage.removeItem("user_data")
                 localStorage.setItem("user_data", JSON.stringify(userData));

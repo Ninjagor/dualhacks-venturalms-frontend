@@ -1,5 +1,10 @@
 import React from 'react';
 
+
+import BookIcon from "../../../assets/HeroAssets/BookIcon.svg"
+
+import Documentation from "../../../assets/HeroAssets/Documentation.png";
+
 import HeroTags from './HeroTags';
 import BrainIcon from "../../../assets/HeroAssets/BrainIcon.svg";
 
@@ -47,9 +52,25 @@ const Features = () => {
                         <img src={LightModeFeaturesPicture} className="w-full block dark:hidden" />
                         <img src={DarkModeFeaturesPicture} className="w-full hidden dark:block" />
                     </div>
-                    <div className="w-full h-full bg-red-500">
-                    </div>
+                    {/* <div className="w-full h-full bg-red-500">
+                    </div> */}
+                    <div className="w-full h-full bg-white border-[1px] border-[#E9EBED] rounded-[13px] p-3 dark:bg-neutral-900 dark:border-neutral-800 flex flex-col items-center justify-around gap-5">
+                        <div className="ml-5 mt-5 flex flex-col gap-4">
+                            <div className="cursor-pointer flex items-center justify-center bg-[#E0F2E7] dark:bg-green-900 w-fit h-fit p-1 pl-5 pr-5 gap-2   border-[1px] border-[#17A636] rounded-[3px]">
+                                <p className=" text-[#17A636] green-400 text-[13px] font-medium">Documentation</p>
+                                <img src={BookIcon} className='w-[15px] h-[15px]' alt="Book Icon"/>
+                            </div>
+                            <h1 className='text-[27px] font-semibold max-w-[50%] tracking-tight text-neutral-600 leading-tight dark:text-neutral-200 max-[980px]:max-w-[100%]'>Utilize our in-depth documentation to begin your<span className='text-blue-600'> ventura</span> journey.</h1>
+                            <Link to="/about" className="group relative bg-red-500/0 w-fit pr-9">
+                            <p className="text-[18px] font-semibold tracking-tight text-[#17A636]">Take me there</p>
+                                    <FontAwesomeIcon className="text-[13px] absolute right-6 opacity-0 group-hover:opacity-100 group-hover:right-4 transition-all duration-200 ease-out top-[50%] translate-y-[-50%] text-[#17A636]" icon={faChevronRight} />
+                                    <FontAwesomeIcon className="text-[13px] absolute right-4 opacity-100 group-hover:opacity-0 group-hover:right-2 transition-all duration-200 ease-out top-[50%]  translate-y-[-50%]  text-[#17A636]" icon={faArrowRight} />
+                            </Link>
+                        </div>
+                        {/* Right Box Images */}
+                        <img src={Documentation} className="w-full block" alt="Documentation"/>
                 </div>
+            </div>
             </div>
         </section>
         </>
